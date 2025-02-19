@@ -1,7 +1,5 @@
 package com.example.student.a_entity;
 
-import org.hibernate.annotations.ValueGenerationType;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +15,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "Student")
+@Table(name = "Student"/*
+                        * , schema = "StudentDBSpringGitHub" - Doesn't work because in
+                        * application.properties the code is connected to a pre-specified schema
+                        */)
 @Entity
 public class Student {
 
@@ -26,11 +27,12 @@ public class Student {
     @Column(name = "sid")
     private Long id;
 
-    @Column(name = "sname")
+    @Column(name = "sname", nullable = false, unique = true)
+    // unique = true only applies when creating fresh schema
+    // if schema already exists then unique = true doesn't work
     private String name;
 
-    @Column(name = "marks")
+    @Column(name = "marks", nullable = false)
     private Long marks;
-
 
 }
