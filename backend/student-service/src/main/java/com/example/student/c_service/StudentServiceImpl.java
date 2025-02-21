@@ -1,9 +1,11 @@
 package com.example.student.c_service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.example.student.b_repository.StudentRepository;
+import com.example.student.e_exceptions.*;
 import com.example.student.a_entity.*;
 
 import java.util.*;
@@ -24,39 +26,38 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findStudentById(Long id) {
-        return studentRepository.findById(id).orElse(null);
-        // TODO: StudentNotFoundException
+        Student studentFromDB = studentRepository.findById(id).orElse(null);
+        if (studentFromDB == null)
+            throw new StudentNotFoundException(id);
+        return studentFromDB;
     }
 
+    // After using unique = true in student
     @Override
     public void addStudent(Student student) {
-        studentRepository.save(student);
+        try {
+            studentRepository.save(student);
+        } catch (DataIntegrityViolationException e) {
+            if (student.getName() == null) {
+                throw new IllegalArgumentException("Name cannot be null");
+            } else {
+                throw new StudentAlreadyExistsException(student.getName());
+            }
+        }
     }
 
     @Override
-    public Student updateStudent(Long idOfCurrentStudent, Student newStudentInfo) {
-        /*
-         * Step 1 - Find the existing student using his/her id
-         * Step 2 - Extract the new student details from the new Student entity
-         * Step 3 - use getters and setters to set new values to the old values
-         * 
-         * Extra - TO DO
-         * ------
-         * (a) Need to handle null - create and implement an exception
-         */
+    public Student updateStudent(Long idOfCurrentStudent, Long marks) {
+        Student currentStudent = findStudentById(idOfCurrentStudent);
+        currentStudent.setMarks(marks);
+        studentRepository.save(currentStudent);
 
-         Student currentStudent = studentRepository.findById(idOfCurrentStudent).orElse(null);
-         currentStudent.setName(newStudentInfo.getName());
-         currentStudent.setMarks(newStudentInfo.getMarks());
-         studentRepository.save(currentStudent);
-
-         return currentStudent;
+        return currentStudent;
     }
 
     @Override
     public void removeStudent(Long id) {
-        studentRepository.deleteById(id);
+        Student studentToBeRemoved = findStudentById(id);
+        studentRepository.delete(studentToBeRemoved);
     }
-
-    
 }
