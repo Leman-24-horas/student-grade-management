@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.student.a_entity.Student;
 import com.example.student.c_service.StudentService;
-import com.example.student.e_exceptions.StudentAlreadyExistsException;
 import com.example.student.f_dto.MarksDTO;
 
 import java.util.List;
@@ -21,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
-
-
-
 @RestController
 @RequestMapping("/student") // to set the base url: localhost:8080/student
 public class StudentController {
@@ -33,11 +29,6 @@ public class StudentController {
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
-
-    // @GetMapping("/all")
-    // public List<Student> getAllStudents() {
-    //     return studentService.listAllStudents();
-    // }
 
     @GetMapping("/all")
     public ResponseEntity<?> getAllStudents() {
@@ -50,11 +41,6 @@ public class StudentController {
         return ResponseEntity.ok(listOfAllStudents);
     }
 
-    // @GetMapping("/{id}")
-    // public Student getStudent(@PathVariable Long id) {
-    //     return studentService.findStudentById(id);
-    // }
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getStudent(@PathVariable Long id) {
         try {
@@ -64,21 +50,6 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-
-    // @PostMapping("/add")
-    // public void postStudent(@RequestBody Student student) {
-    //     studentService.addStudent(student);
-    // }
-
-    // @PostMapping("/add")
-    // public ResponseEntity<?> postStudent(@RequestBody Student student) {
-    //     try {
-    //         studentService.addStudent(student);
-    //         return ResponseEntity.ok("Student successfully added to database");
-    //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    //     }
-    // }
 
     // Alternative
     @PostMapping("/add")
@@ -90,21 +61,6 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-
-    // @PutMapping("/update/{id}")
-    // public Student putStudent(@PathVariable Long id, @RequestBody Student student) {        
-    //     return studentService.updateStudent(id, student);
-    // }
-
-    // @PutMapping("/update/{id}")
-    // public ResponseEntity<?> putStudent(@PathVariable Long id, @RequestBody Student student) { // is RB supposed to be object only? Yes
-    //     try {
-    //         Student updatedStudent = studentService.updateStudent(id, student.getMarks());
-    //         return ResponseEntity.ok(updatedStudent);
-    //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-    //     }        
-    // }
 
     //Using DTO - Now marks of type Long have been converted into an Object
     @PutMapping("/update/{id}")
@@ -126,7 +82,5 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-    
-    
     
 }
