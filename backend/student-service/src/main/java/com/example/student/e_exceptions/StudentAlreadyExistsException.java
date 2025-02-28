@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class StudentAlreadyExistsException extends RuntimeException {
 
     public StudentAlreadyExistsException(String name) {
-        super("Student with name = " + name + " already exsists.");
+        super("Student with name = " + name + " already exists.");
     }
     
 }
