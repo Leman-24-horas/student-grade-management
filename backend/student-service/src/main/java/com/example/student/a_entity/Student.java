@@ -1,12 +1,17 @@
 package com.example.student.a_entity;
 
+import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -59,4 +64,20 @@ public class Student {
         return Objects.hash(id, name, marks);
     }
 
+    /* mappedBy = exact name of the variable in Enrollment */
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Enrollment> enrollments;
+
+    /* Enrollment has been added hence constructor needs to be manually defined */
+    public Student(Long id, String name, Long marks) {
+        this.id = id;
+        this.name = name;
+        this.marks = marks;
+
+        System.out.println();
+        System.out.println("ENTITY: marks are" + marks);
+        System.out.println();
+
+    }
 }

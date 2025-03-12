@@ -8,4 +8,9 @@ public class StudentNotFoundException extends RuntimeException {
     public StudentNotFoundException(Long studentId) {
         super("Could not find Student with Id = " + studentId);
     }
+
+    // Empty constructor being used in enrollmentService
+    public StudentNotFoundException() {
+        super("Student does not exist - failed to create enrollment");
+    }
 }

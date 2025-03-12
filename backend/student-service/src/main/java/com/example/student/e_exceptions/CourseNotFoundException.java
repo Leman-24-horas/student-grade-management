@@ -8,4 +8,8 @@ public class CourseNotFoundException extends RuntimeException {
     public CourseNotFoundException(Long courseId) {
         super("Could not find course with cid = " + courseId);
     }
+
+    public CourseNotFoundException() {
+        super("Course does not exist - could not create enrollment");
+    }
 }
