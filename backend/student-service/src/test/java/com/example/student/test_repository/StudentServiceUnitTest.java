@@ -40,7 +40,7 @@ public class StudentServiceUnitTest {
 
     @BeforeEach
     void setUp() {
-        mockStudent = new Student(1L, "Bhanu Pratap", 88L); // so that don't need to create this obj again and again
+        mockStudent = new Student(1L, "Bhanu Pratap"); // so that don't need to create this obj again and again
     
     }
 
@@ -67,9 +67,9 @@ public class StudentServiceUnitTest {
     void listAllStudents_StudentsAdded_ReturnNonEmptyArrayList() {
         // Arrange 
         List<Student> expectedList = new ArrayList<>();
-        Student s1 = new Student(1L, "Ramu", 76L);
-        Student s2 = new Student(2L, "Lalu", 81L);
-        Student s3 = new Student(3L, "Virat", 100L);
+        Student s1 = new Student(1L, "Ramu");
+        Student s2 = new Student(2L, "Lalu");
+        Student s3 = new Student(3L, "Virat");
 
         expectedList.add(s1);
         expectedList.add(s2);
@@ -155,7 +155,7 @@ public class StudentServiceUnitTest {
     @Test
     void addStudent_NameNull_ReturnIllegalArgException() {
         // Arrange
-        Student illegalStudent = new Student(2L, null, 86L);
+        Student illegalStudent = new Student(2L, null);
         // when(studentRepository.save(illegalStudent)).thenThrow(IllegalArgumentException.class); // this is wrong 
                                                                                                    // for methods with non-void return type use .thenThrow()
         // for methods of void return type
@@ -192,6 +192,7 @@ public class StudentServiceUnitTest {
         // Assume student with id = 1L doesn't exist
         // Arrange
         // when(studentRepository.findById(1L)).thenThrow(StudentNotFoundException.class); this is wrong when student doesn't exist findBy return Optional.empty() - it doesn't throw exception straight away
+        Student newStudent = new Student(2L, "ksi");
         when(studentRepository.findById(2L)).thenReturn(Optional.empty());
 
         // Act
@@ -201,7 +202,7 @@ public class StudentServiceUnitTest {
 
         // Assert
         // assertNull(actualStudent);
-        assertThrows(StudentNotFoundException.class, () -> studentService.updateStudent(2L, 0L));
+        assertThrows(StudentNotFoundException.class, () -> studentService.updateStudent(2L, newStudent));
 
         // Verify
         verify(studentRepository, times(1)).findById(2L); 
@@ -211,8 +212,8 @@ public class StudentServiceUnitTest {
     @Test
     void updateStudent_ValidStudent_ReturnUpdatedStudent() {
         // Arrange
-        // Long marks = 100L;
-        Student originalStudent = new Student(mockStudent.getId(), mockStudent.getName(), mockStudent.getMarks());
+        Student originalStudent = new Student(mockStudent.getStudentId(), mockStudent.getStudentName());
+        Student newStudent = new Student(2L, "Rajendra");
         when(studentRepository.findById(1L)).thenReturn(Optional.of(mockStudent));
         // Student originalStudent = mockStudent; // this doesn't do shit
                                                // you are still referencing the same object so even though marks are changed later, that change is reflected here too hence orignal student = updated student 
@@ -222,16 +223,16 @@ public class StudentServiceUnitTest {
         // mock save only when saving new objects
 
         // Act
-        Student updatedStudent = studentService.updateStudent(1L, 100L);
+        Student updatedStudent = studentService.updateStudent(1L, newStudent);
 
         // Assert
         assertNotNull(updatedStudent);
-        assertEquals(100L, updatedStudent.getMarks());
+        assertEquals(1L, updatedStudent.getStudentId());
+        assertEquals("Rajendra", updatedStudent.getStudentName());
 
         assertNotEquals(originalStudent, updatedStudent);
-        assertEquals(originalStudent.getId(), updatedStudent.getId());
-        assertEquals(originalStudent.getName(), updatedStudent.getName());
-        assertNotEquals(originalStudent.getMarks(), updatedStudent.getMarks());
+        assertEquals(originalStudent.getStudentId(), updatedStudent.getStudentId());
+        assertNotEquals(originalStudent.getStudentName(), updatedStudent.getStudentName());
 
         // Verify
         verify(studentRepository, times(1)).findById(1L);

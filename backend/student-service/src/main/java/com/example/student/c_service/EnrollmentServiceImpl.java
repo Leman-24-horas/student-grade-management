@@ -1,6 +1,5 @@
 package com.example.student.c_service;
 
-import java.lang.StackWalker.Option;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +41,12 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     public void addEnrollment(Enrollment enrollment) {
         /* Duplication check
         -----------------------
-         * Mukesh Math A
-         * Mukesh Math B
+         * Mukesh Math 80
+         * Mukesh Math 90
          * This is not allowed
          * 
-         * Mukesh Math A
-         * Mukesh English B
+         * Mukesh Math 90
+         * Mukesh English 70
          * This is allowed
          * 
          * Enrollment cannot exist without student or couse
@@ -62,25 +61,14 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         Optional<Enrollment> existingEnrollment = enrollmentRepository.findByStudentAndCourse(student, course);
         if(existingEnrollment.isPresent()) {
-            throw new EnrollmentAlreadyExistsException(student.getId(), course.getCourseId());
+            throw new EnrollmentAlreadyExistsException(student.getStudentId(), course.getCourseId());
         }
-
-        // System.out.println();
-        //     System.out.println("----------Debugging SERVICE---------------");
-        //     System.out.println("sid is " + student.getId());
-        //     System.out.println("student name is " + student.getName());
-        //     System.out.println("marks are " + student.getMarks());
-        //     System.out.println("cid is " + course.getCourseId());
-        //     System.out.println("course name is " + course.getCourseName());
-        //     System.out.println("----------Debugging---------------");
-        //     System.out.println();
         
-
         try {
             enrollmentRepository.save(enrollment);
         } catch (DataIntegrityViolationException e) {
-            if(enrollment.getGrade().equals(null)) {
-                throw new IllegalArgumentException("Grade cannot be null");
+            if(enrollment.getMarks().equals(null)) {
+                throw new IllegalArgumentException("Marks cannot be null");
             } else {
                 throw new EnrollmentAlreadyExistsException(enrollment.getEnrollmentId());
             }
@@ -92,7 +80,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         Enrollment currentEnrollment = findEnrollmentById(enrollmentId);
         currentEnrollment.setStudent(newEnrollment.getStudent());
         currentEnrollment.setCourse(newEnrollment.getCourse());
-        currentEnrollment.setGrade(newEnrollment.getGrade());
+        currentEnrollment.setMarks(newEnrollment.getMarks());
         enrollmentRepository.save(currentEnrollment);
 
         return currentEnrollment;

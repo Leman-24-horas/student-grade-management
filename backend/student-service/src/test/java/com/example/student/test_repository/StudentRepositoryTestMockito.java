@@ -24,8 +24,7 @@ public class StudentRepositoryTestMockito {
         // Arrange - Give the jar of water [Setup - instantiate entities etc needed for the actual method to be tested]
         Long sid = 1L; // L means long
         String name = "Ramu";
-        Long marks = 69L;
-        Student mockStudent = new Student(sid, name, marks); // Mocking student entity instead of calling a real one
+        Student mockStudent = new Student(sid, name); // Mocking student entity instead of calling a real one
         when(studentRepository.save(mockStudent)).thenReturn(mockStudent); // Mocking saved method instead of calling real one.
                                                                            
 
@@ -34,10 +33,8 @@ public class StudentRepositoryTestMockito {
 
         // Assert - [Verifying that the output matches the desired output]
         assertNotNull(mockStudent, "Saved student shouldn't be null");
-        assertEquals(mockStudent.getId(), result.getId(), "Sids should match");
-        assertEquals(mockStudent.getName(), result.getName(), "Names should match");
-        assertEquals(mockStudent.getMarks(), result.getMarks(), "Marks should match");
-        
+        assertEquals(mockStudent.getStudentId(), result.getStudentId(), "Sids should match");
+        assertEquals(mockStudent.getStudentName(), result.getStudentName(), "Names should match");        
         
         // Verify interaction
         verify(studentRepository).save(mockStudent); // verify that studentRepo was called to save mockStudent

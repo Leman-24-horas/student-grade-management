@@ -31,17 +31,17 @@ import lombok.Setter;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sid")
-    private Long id;
+    private Long studentId;
 
     @Column(name = "sname", nullable = false, unique = true)
     // unique = true only applies when creating fresh schema
     // if schema already exists then unique = true doesn't work
-    private String name;
+    private String studentName;
 
-    @Column(name = "marks", nullable = false)
-    private Long marks;
+    // @Column(name = "marks", nullable = false)
+    // private Long marks;
 
     /* equals() method overriden 
      * Not needed but did for unit testing so that assertEquals() works but assert still works even without overriding equals()
@@ -55,13 +55,13 @@ public class Student {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         Student student = (Student) obj;
-        return id == student.id && name == student.name && marks == student.marks;
+        return studentId == student.studentId && studentName == student.studentName;
     }
 
     // Same reason as above for equals - again not needed, just good practice
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, marks);
+        return Objects.hash(studentId, studentName);
     }
 
     /* mappedBy = exact name of the variable in Enrollment */
@@ -70,14 +70,8 @@ public class Student {
     private List<Enrollment> enrollments;
 
     /* Enrollment has been added hence constructor needs to be manually defined */
-    public Student(Long id, String name, Long marks) {
-        this.id = id;
-        this.name = name;
-        this.marks = marks;
-
-        System.out.println();
-        System.out.println("ENTITY: marks are" + marks);
-        System.out.println();
-
+    public Student(Long studentId, String studentName) {
+        this.studentId = studentId;
+        this.studentName = studentName;
     }
 }

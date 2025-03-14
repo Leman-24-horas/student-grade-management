@@ -2,29 +2,13 @@ package com.example.student.d_controller;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 
-import com.example.student.c_service.CourseService;
-import com.example.student.c_service.EnrollmentService;
-import com.example.student.c_service.StudentService;
-import com.example.student.e_exceptions.StudentNotFoundException;
+import com.example.student.c_service.*;
 import com.example.student.a_entity.*;
 import com.example.student.f_dto.*;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 
 @RestController
@@ -39,7 +23,7 @@ public class EnrollmentController {
     @Autowired
     private CourseService courseService;
 
-    /* Enrollment constructor here */
+    /* Enrollment constructor here - not needed guess */
 
     @GetMapping("/all")
     public ResponseEntity<?> getAllEnrollments() {
@@ -71,32 +55,10 @@ public class EnrollmentController {
             Long cId = newEnrollment.getCourseId();
             Course course = courseService.findCourseById(cId);
 
-            System.out.println();
-            System.out.println("----------Debugging---------------");
-            System.out.println("CONTROLLER: marks are " + student.getId());
-            System.out.println("CONTROLLER: marks are " + student.getName());
-            System.out.println("CONTROLLER: marks are " + student.getMarks());
-            System.out.println(course.toString());
-            System.out.println("----------Debugging---------------");
-            System.out.println();
-
-
-
-            Enrollment properEnrollment = new Enrollment(student, course, newEnrollment.getGrade());
+            Enrollment properEnrollment = new Enrollment(student, course, newEnrollment.getMarks());
             enrollmentService.addEnrollment(properEnrollment);
-
-            // Long studentId = newEnrollment.getStudent().getId();
-            // Student student = studentService.findStudentById(studentId); // throw SNFE
-
-            // Long courseId = newEnrollment.getCourse().getCourseId();
-            // Course course = courseService.findCourseById(courseId); // throw CNFE
-
-            // Enrollment enrollment = new Enrollment(student, course, newEnrollment.getGrade());
-
-            // // enrollmentService.addEnrollment(newEnrollment); ORIGINAL
-            // enrollmentService.addEnrollment(enrollment);
-
             return ResponseEntity.ok("Enrollment successfully added to database");
+
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -114,9 +76,9 @@ public class EnrollmentController {
             Student student = studentService.findStudentById(sId); // will throw SNFE if sId invalid
             Long cId = newEnrollment.getCourseId();
             Course course = courseService.findCourseById(cId);
-            Enrollment newProperEnrollment = new Enrollment(student, course, newEnrollment.getGrade());
+            Enrollment newProperEnrollment = new Enrollment(student, course, newEnrollment.getMarks());
 
-            Enrollment updatedEnrollment = enrollmentService.updateEnrollment(id, newProperEnrollment); // TODO use Enrollment
+            Enrollment updatedEnrollment = enrollmentService.updateEnrollment(id, newProperEnrollment); 
             return ResponseEntity.ok(updatedEnrollment);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -142,8 +104,5 @@ public class EnrollmentController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    
-    
-    
     
 }

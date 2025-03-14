@@ -24,7 +24,6 @@ import com.example.student.c_service.StudentServiceImpl;
 import com.example.student.d_controller.*;
 import com.example.student.e_exceptions.StudentAlreadyExistsException;
 import com.example.student.e_exceptions.StudentNotFoundException;
-import com.example.student.f_dto.MarksDTO;
 
 @ExtendWith(MockitoExtension.class)
 public class StudentControllerUnitTest {
@@ -38,7 +37,7 @@ public class StudentControllerUnitTest {
 
     @BeforeEach
     void setUp() {
-        mockStudent = new Student(1L, "Bhanu", 90L);
+        mockStudent = new Student(1L, "Bhanu");
     }
 
     @Test
@@ -116,12 +115,12 @@ public class StudentControllerUnitTest {
     @Test
     void postStudent_DuplicateEntry_ReturnBadRequest() {
         // Arrange
-        doThrow(new StudentAlreadyExistsException(mockStudent.getName())).when(studentService).addStudent(mockStudent);
+        doThrow(new StudentAlreadyExistsException(mockStudent.getStudentName())).when(studentService).addStudent(mockStudent);
         // Act
         ResponseEntity<?> response = studentController.postStudent(mockStudent);
         // Assert
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("Student with name = " + mockStudent.getName() + " already exists.", response.getBody());
+        assertEquals("Student with name = " + mockStudent.getStudentName() + " already exists.", response.getBody());
         // Verify
         verify(studentService, times(1)).addStudent(mockStudent);
     }
@@ -129,26 +128,26 @@ public class StudentControllerUnitTest {
     @Test
     void putStudent_ValidId_ReturnOk() {
         //Arrange
-        Student updatedStudent = new Student(1L, mockStudent.getName(), 50L);
-        MarksDTO marks = new MarksDTO(100L);
+        Student updatedStudent = new Student(1L, "Bob"); // student with new name
+        // MarksDTO marks = new MarksDTO(100L);
 
         /* This method will not update the marks of mockStudent
          * You have to do that manually or create a new entity like above
          * The point of testing is not to test the internal logic of service/controller
          * It's just to check whether the method is being called correctly ie returning the correct values etc
          */
-        when(studentService.updateStudent(1L, 100L)).thenReturn(updatedStudent); 
+        when(studentService.updateStudent(1L, updatedStudent)).thenReturn(updatedStudent); 
         
         // Act
-        ResponseEntity<?> response = studentController.putStudent(1L, marks);
+        ResponseEntity<?> response = studentController.putStudent(1L, updatedStudent);
         // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
         Student responseStudent = (Student) response.getBody();
         assertEquals(updatedStudent, responseStudent);
-        assertEquals(50L, responseStudent.getMarks());
-        assertEquals(updatedStudent.getMarks(), responseStudent.getMarks());
+        assertEquals("Bob", responseStudent.getStudentName());
+        assertEquals(1L, responseStudent.getStudentId());
         // Verify
-        verify(studentService, times(1)).updateStudent(1L, 100L);
+        verify(studentService, times(1)).updateStudent(1L, updatedStudent);
         // verify(studentService, times(1)).findStudentById(1L); // not invoked because not mocked + it's nested inside updateStudent
     }
 
@@ -168,17 +167,17 @@ public class StudentControllerUnitTest {
          * I believe that the error here is because of the nesting of findStudent() inside updateStudent()
          */
         // Arrange
-        when(studentService.updateStudent(2L, 100L)).thenThrow(new StudentNotFoundException(2L));
+        Student newStudent = new Student(2L, "Billabong");
+        when(studentService.updateStudent(2L, newStudent)).thenThrow(new StudentNotFoundException(2L));
         // when(studentService.findStudentById(2L)).thenThrow(new StudentNotFoundException(2L));
-        MarksDTO marks = new MarksDTO(100L);
         // Act
-        ResponseEntity<?> response = studentController.putStudent(2L, marks);
+        ResponseEntity<?> response = studentController.putStudent(2L, newStudent);
         // Assert
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Could not find Student with Id = 2", response.getBody());
         // Verify
         // verify(studentService, never()).findStudentById(2L); // same thing not invoked
-        verify(studentService, times(1)).updateStudent(2L, 100L);
+        verify(studentService, times(1)).updateStudent(2L, newStudent);
     }
 
     @Test

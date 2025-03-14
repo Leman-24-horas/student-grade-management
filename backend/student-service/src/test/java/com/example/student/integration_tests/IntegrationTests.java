@@ -44,7 +44,7 @@ public class IntegrationTests {
     public void getStudents_Success() throws Exception {
         // Arrange
         URI uri = new URI(baseUrl + port + "/student/all");
-        studentRepository.save(new Student(null, "Bhanu", 100L)); // null so that id can be auto assigned as per GenerationType
+        studentRepository.save(new Student(null, "Bhanu")); // null so that id can be auto assigned as per GenerationType
 
         // Act
         ResponseEntity<Student[]> result = restTemplate.getForEntity(uri, Student[].class);
@@ -53,15 +53,14 @@ public class IntegrationTests {
         // Assert
         assertEquals(200, result.getStatusCode().value());
         assertEquals(1, listOfStudents.length);
-        assertEquals("Bhanu", listOfStudents[0].getName());
-        assertEquals(100L, listOfStudents[0].getMarks());
+        assertEquals("Bhanu", listOfStudents[0].getStudentName());
     }
 
     @Test
     public void getStudent_ValidSid_Sucess() throws Exception {
         // Arrange
-        Student student = new Student(null, "Sammy", 76L);
-        Long id = studentRepository.save(student).getId(); // currently there is no id, when you save the student, the student entity is returned which has an id so extract and use that
+        Student student = new Student(null, "Sammy");
+        Long id = studentRepository.save(student).getStudentId(); // currently there is no id, when you save the student, the student entity is returned which has an id so extract and use that
         URI uri = new URI(baseUrl + port + "/student/" + id);
 
         // Act
@@ -69,8 +68,6 @@ public class IntegrationTests {
 
         // Assert
         assertEquals(HttpStatus.OK, resultStudent.getStatusCode());
-        assertEquals("Sammy", resultStudent.getBody().getName()); // if you specify the ? withing <> of response entity you can make use of method chaining
-        assertEquals(76L, resultStudent.getBody().getMarks());
-
+        assertEquals("Sammy", resultStudent.getBody().getStudentName()); // if you specify the ? withing <> of response entity you can make use of method chaining
     }
 }

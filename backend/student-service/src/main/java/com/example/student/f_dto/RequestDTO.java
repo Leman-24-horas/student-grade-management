@@ -10,7 +10,7 @@ public class RequestDTO {
     public static class CreateEnrollment {
         Long studentId;
         Long courseId;
-        String grade;
+        Long marks;
     }
 }
 

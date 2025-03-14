@@ -25,40 +25,38 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student findStudentById(Long id) {
-        Student studentFromDB = studentRepository.findById(id).orElse(null);
+    public Student findStudentById(Long studentId) {
+        Student studentFromDB = studentRepository.findById(studentId).orElse(null);
         if (studentFromDB == null)
-            throw new StudentNotFoundException(id);
+            throw new StudentNotFoundException(studentId);
         return studentFromDB;
     }
 
-    // After using unique = true in student
-    // TODO - return type student - need for testing
     @Override
     public void addStudent(Student student) {
         try {
             studentRepository.save(student);
         } catch (DataIntegrityViolationException e) {
-            if (student.getName() == null) {
+            if (student.getStudentName() == null) {
                 throw new IllegalArgumentException("Name cannot be null");
             } else {
-                throw new StudentAlreadyExistsException(student.getName());
+                throw new StudentAlreadyExistsException(student.getStudentName());
             }
         }
     }
 
     @Override
-    public Student updateStudent(Long idOfCurrentStudent, Long marks) {
-        Student currentStudent = findStudentById(idOfCurrentStudent);
-        currentStudent.setMarks(marks);
-        studentRepository.save(currentStudent);
+    public Student updateStudent(Long idOfExistingStudent, Student newStudent) {
+        Student existingStudent = findStudentById(idOfExistingStudent);
+        existingStudent.setStudentName(newStudent.getStudentName());
+        studentRepository.save(existingStudent);
 
-        return currentStudent;
+        return existingStudent;
     }
 
     @Override
-    public void removeStudent(Long id) {
-        Student studentToBeRemoved = findStudentById(id);
+    public void removeStudent(Long studentId) {
+        Student studentToBeRemoved = findStudentById(studentId);
         studentRepository.delete(studentToBeRemoved);
     }
 }
