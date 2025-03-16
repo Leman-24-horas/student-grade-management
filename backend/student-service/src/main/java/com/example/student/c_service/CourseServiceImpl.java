@@ -34,9 +34,9 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void addCourse(Course course) {
+    public Course addCourse(Course course) {
         try {
-            courseRepository.save(course);
+            return courseRepository.save(course);
         } catch (DataIntegrityViolationException e) { // due to nullable = false and unique == true
             if(course.getCourseName() == null) {
                 throw new IllegalArgumentException("Course name cannot be null");

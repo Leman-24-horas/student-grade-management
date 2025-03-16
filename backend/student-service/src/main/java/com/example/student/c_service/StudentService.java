@@ -7,7 +7,7 @@ import com.example.student.a_entity.Student;
 public interface StudentService {
     List<Student> listAllStudents();
     Student findStudentById(Long studentId);
-    void addStudent(Student student);
+    Student addStudent(Student student);
     Student updateStudent(Long idOfExistingStudent, Student newStudent);
     void removeStudent(Long studentId);
 }

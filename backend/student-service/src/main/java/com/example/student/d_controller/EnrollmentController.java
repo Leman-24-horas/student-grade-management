@@ -56,8 +56,8 @@ public class EnrollmentController {
             Course course = courseService.findCourseById(cId);
 
             Enrollment properEnrollment = new Enrollment(student, course, newEnrollment.getMarks());
-            enrollmentService.addEnrollment(properEnrollment);
-            return ResponseEntity.ok("Enrollment successfully added to database");
+            Enrollment savedEnrollment = enrollmentService.addEnrollment(properEnrollment);
+            return ResponseEntity.ok(savedEnrollment);
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

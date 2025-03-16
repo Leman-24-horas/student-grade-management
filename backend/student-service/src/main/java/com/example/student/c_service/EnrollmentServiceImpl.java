@@ -38,7 +38,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     @Override
     @Transactional
-    public void addEnrollment(Enrollment enrollment) {
+    public Enrollment addEnrollment(Enrollment enrollment) {
         /* Duplication check
         -----------------------
          * Mukesh Math 80
@@ -65,7 +65,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         }
         
         try {
-            enrollmentRepository.save(enrollment);
+            return enrollmentRepository.save(enrollment);
         } catch (DataIntegrityViolationException e) {
             if(enrollment.getMarks().equals(null)) {
                 throw new IllegalArgumentException("Marks cannot be null");

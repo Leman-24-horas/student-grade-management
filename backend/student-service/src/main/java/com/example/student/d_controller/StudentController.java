@@ -53,8 +53,8 @@ public class StudentController {
     @PostMapping("/add")
     public ResponseEntity<?> postStudent(@RequestBody Student student) {
         try {
-            studentService.addStudent(student);
-            return ResponseEntity.ok("Student successfully added to database");
+            Student savedStudent = studentService.addStudent(student); // this method returns the student entity being added into the DB
+            return ResponseEntity.ok(savedStudent);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

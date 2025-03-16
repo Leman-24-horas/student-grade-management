@@ -51,8 +51,8 @@ public class CourseController {
     @PostMapping("/add")
     public ResponseEntity<?> postCourse(@RequestBody Course course) {
         try {
-            courseService.addCourse(course);
-            return ResponseEntity.ok("Course successfully added to database");
+            Course savedCourse = courseService.addCourse(course);
+            return ResponseEntity.ok(savedCourse);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

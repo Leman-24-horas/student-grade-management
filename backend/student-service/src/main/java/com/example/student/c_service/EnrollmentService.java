@@ -10,7 +10,7 @@ public interface EnrollmentService {
     Enrollment findEnrollmentById(Long enrollmentId);
     // Enrollment findEnrollmentByStudentId(Long studentId); //needs special query
     
-    void addEnrollment(Enrollment enrollment);
+    Enrollment addEnrollment(Enrollment enrollment);
     Enrollment updateEnrollment(Long enrollmentId, Enrollment newEnrollment);
     void deleteEnrollment(Long enrollmentId);  
 } 

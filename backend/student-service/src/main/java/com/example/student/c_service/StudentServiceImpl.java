@@ -33,9 +33,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void addStudent(Student student) {
+    public Student addStudent(Student student) {
         try {
-            studentRepository.save(student);
+            return studentRepository.save(student); // now this returns the added student instead of void
         } catch (DataIntegrityViolationException e) {
             if (student.getStudentName() == null) {
                 throw new IllegalArgumentException("Name cannot be null");
