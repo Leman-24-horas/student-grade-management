@@ -24,13 +24,13 @@ public class GradeController {
     private GradeService gradeService;
 
     @GetMapping("/get/{enrollmentId}")
-    public ResponseEntity<?> getGrade(@PathVariable Long enrollmentId) {
+    public ResponseEntity<Grade> getGrade(@PathVariable Long enrollmentId) {
         Grade gradeFound = gradeService.getGradeByEnrollmentId(enrollmentId);
         return ResponseEntity.ok(gradeFound);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> postGradeForEnrollment(@RequestBody RequestDTO.Enrollment enrollmentDetails) {
+    public ResponseEntity<Grade> postGradeForEnrollment(@RequestBody RequestDTO.Enrollment enrollmentDetails) {
         Long enrollmentId = enrollmentDetails.getEnrollmentId();
         Long marks = enrollmentDetails.getMarks();
 
@@ -40,7 +40,7 @@ public class GradeController {
     }
 
     @PutMapping("/update/{enrollmentId}")
-    public ResponseEntity<?> putGrade(@PathVariable Long enrollmentId, @RequestBody RequestDTO.Marks newMarks) {
+    public ResponseEntity<Grade> putGrade(@PathVariable Long enrollmentId, @RequestBody RequestDTO.Marks newMarks) {
         Grade updatedGrade = gradeService.updateGrade(enrollmentId, newMarks.getMarks());
         return ResponseEntity.ok(updatedGrade);
     }

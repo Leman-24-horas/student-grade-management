@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import com.example.student.c_service.*;
 import com.example.student.a_entity.*;
 import com.example.student.f_dto.*;
+import com.example.student.i_feigndto.Grade;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 @RestController
@@ -22,6 +28,9 @@ public class EnrollmentController {
 
     @Autowired
     private CourseService courseService;
+
+    // logger for debugging
+    // private static final Logger LOGGER = LoggerFactory.getLogger(Enrollment.class.getName()); 
 
     /* Enrollment constructor here - not needed guess */
 
@@ -100,6 +109,26 @@ public class EnrollmentController {
         try {
             List<Enrollment> list = enrollmentService.listAllEnrollmentsFromCourse(cid);
             return ResponseEntity.ok(list);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/calculate-grade/{eId}")
+    public ResponseEntity<?> postGrade (@PathVariable Long eId) {
+        try {
+            Grade grade = enrollmentService.calculateGradeForEnrollment(eId);
+            return ResponseEntity.ok(grade);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/grade/get/{eId}")
+    public ResponseEntity<?> getGrade(@PathVariable Long eId) {
+        try {
+            Grade grade = enrollmentService.getGradeForEnrollment(eId);
+            return ResponseEntity.ok(grade);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
