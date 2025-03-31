@@ -9,5 +9,6 @@ public interface CourseService {
     Course addCourse(Course course);
     Course updateCourse(Long id, String courseName);
     void deleteCourse(Long id);
+    void deleteAllCourses();
 
 }

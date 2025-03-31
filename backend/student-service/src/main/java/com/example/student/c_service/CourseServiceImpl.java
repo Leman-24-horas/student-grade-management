@@ -60,4 +60,9 @@ public class CourseServiceImpl implements CourseService {
         Course courseInQuestion = findCourseById(cId); // will throw CourseNotFoundException 
         courseRepository.delete(courseInQuestion);
     }
+
+    @Override
+    public void deleteAllCourses() {
+        courseRepository.deleteAll();
+    }
 }

@@ -38,12 +38,13 @@ public class DataLoader implements CommandLineRunner { // commandLineRunner so t
         List<Enrollment> listOfAllEnrollments = enrollmentService.listAllEnrollments();
 
         if(!listOfAllStudents.isEmpty() || !listOfAllCourses.isEmpty() || !listOfAllEnrollments.isEmpty()) {
-            System.out.println("Exisiting data - data loading skipped");
-            return;
+            System.out.println("Exisiting data found");
+            System.out.println("Clearing existing data and loading new data");
 
-            /* Extra? - code that wipes out all previous entries and loads in new data 
-             * Need to add delete all method in service
-            */
+            studentService.deleteAllStudents();
+            courseService.deleteAllCourses();
+            enrollmentService.deleteAllEnrollments();
+
         }
 
         // 2. Create 20 student entities

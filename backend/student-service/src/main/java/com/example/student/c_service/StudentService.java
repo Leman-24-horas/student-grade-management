@@ -10,4 +10,5 @@ public interface StudentService {
     Student addStudent(Student student);
     Student updateStudent(Long idOfExistingStudent, Student newStudent);
     void removeStudent(Long studentId);
+    void deleteAllStudents();
 }

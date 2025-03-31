@@ -100,6 +100,11 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         enrollmentRepository.delete(enrollmentToBeDeleted);
     }
 
+    @Override
+    public void deleteAllEnrollments() {
+        enrollmentRepository.deleteAll();
+    }
+
     // Methods using special queries
     @Override
     public List<Enrollment> listAllEnrollmentsFromCourse(Long courseId) {

@@ -13,6 +13,7 @@ public interface EnrollmentService {
     Enrollment addEnrollment(Enrollment enrollment);
     Enrollment updateEnrollment(Long enrollmentId, Enrollment newEnrollment);
     void deleteEnrollment(Long enrollmentId); 
+    void deleteAllEnrollments();
     
     // feign client methods
     Grade calculateGradeForEnrollment(Long enrollmentId);
