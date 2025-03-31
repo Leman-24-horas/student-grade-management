@@ -186,7 +186,7 @@ void getStudent_InvalidId_ReturnNotFound() {
 - Containerize the application using **Docker** to allow for consistent code deployment across various environments and resolve the "it works on my machine" problem. 
 - Expand the application by integrating additional microservices like
     - `performance`: a service separate from enrollment that stores marks by assessments taken by a student enrolled in a particular course. 
-    - `assessment`: stores details of assessments such as type of assessment (quiz, project, finals etc), and assessment weightage allowing for a more comprehensive calculation of students' marks. 
+    - `assessment`: stores details such as type of assessment (quiz, project, finals etc), and assessment weightage allowing for a more comprehensive calculation of students' marks. 
     - `gateway-service`: for better managing inter-service communication and routing requests to the appropriate microservices. 
     - `authentication-service`: to facilitate user verification and authorization
 - Develop a user interface. 
