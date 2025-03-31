@@ -40,7 +40,6 @@
 ## Running the Application
 1. **Clone the repository:**
     ```bash
-    CHANGE THIS
     git clone https://github.com/Leman-24-horas/student-grade-management.git
     ```
 
