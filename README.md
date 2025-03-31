@@ -43,7 +43,7 @@
     git clone https://github.com/Leman-24-horas/student-grade-management.git
     ```
 
-2. **Set up the database:** Create a MySQL database named            ```student_management``` and set its port to `3306`.
+2. **Set up the database:** Create a MySQL database named            ```student_management```.
 
 3. **Configure Application Properties:** Modify the ```application. properties``` file in the following directories: 
 
