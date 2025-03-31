@@ -1,5 +1,5 @@
 # Student Grade Management System
-created by Aditya Kumar Bhardwaj
+*created by Aditya Kumar Bhardwaj*
 
 ## Overview
 **Student Grade Management System** is a backend application designed to manage and organize student-course information efficiently. It handles student and course details, enrollments, and letter grades for each enrollment. Built with **Java Spring Boot 3** using a **microservices architecture**, this system is scalable, and well-structured for future enhancements.
