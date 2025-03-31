@@ -102,12 +102,12 @@ public class StudentControllerUnitTest {
     @Test
     void postStudent_NewStudent_ReturnOk() {
         // Arrange
-        // when(studentService.addStudent(mockStudent)).thenReturn(mockStudent);
+        when(studentService.addStudent(mockStudent)).thenReturn(mockStudent);
         // Act
         ResponseEntity<?> response = studentController.postStudent(mockStudent);
         // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Student successfully added to database", response.getBody());
+        assertEquals(mockStudent, response.getBody());
         // Verify
         verify(studentService, times(1)).addStudent(mockStudent);
     }
