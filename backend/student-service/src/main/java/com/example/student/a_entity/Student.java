@@ -23,10 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "Student"/*
-                        * , schema = "StudentDBSpringGitHub" - Doesn't work because in
-                        * application.properties the code is connected to a pre-specified schema
-                        */)
+@Table(name = "Student")
 @Entity
 public class Student {
 
@@ -39,9 +36,6 @@ public class Student {
     // unique = true only applies when creating fresh schema
     // if schema already exists then unique = true doesn't work
     private String studentName;
-
-    // @Column(name = "marks", nullable = false)
-    // private Long marks;
 
     /* equals() method overriden 
      * Not needed but did for unit testing so that assertEquals() works but assert still works even without overriding equals()

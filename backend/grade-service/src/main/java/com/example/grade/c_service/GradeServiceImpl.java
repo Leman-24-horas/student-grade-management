@@ -16,15 +16,6 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public Grade getGradeByEnrollmentId(Long enrollmentId) {
-        // Grade grade = gradeRepository.findByEnrollmentId(enrollmentId).orElse(null);
-        
-        // if(grade == null) {
-        //     throw new GradeNotFoundException(enrollmentId);
-        // }
-
-        // return grade;
-
-        // Lambda expression
         return gradeRepository.findByEnrollmentId(enrollmentId)
                 .orElseThrow(() -> new GradeNotFoundException(enrollmentId));
     }

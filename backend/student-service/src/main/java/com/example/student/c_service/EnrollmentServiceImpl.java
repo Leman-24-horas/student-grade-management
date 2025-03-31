@@ -13,7 +13,6 @@ import com.example.student.e_exceptions.CourseNotFoundException;
 import com.example.student.e_exceptions.EnrollmentAlreadyExistsException;
 import com.example.student.e_exceptions.EnrollmentNotFoundException;
 import com.example.student.e_exceptions.StudentNotFoundException;
-// import com.example.student.f_dto.RequestDTO;
 import com.example.student.h_feignclient.GradeFeignClient;
 import com.example.student.i_feigndto.FeignEnrollmentDTO;
 import com.example.student.i_feigndto.Grade;
@@ -109,13 +108,6 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return list;
     }
 
-    // @Override
-    // public Enrollment findEnrollmentByStudentId(Long studentId) {
-    //     Enrollment enrollment = enrollmentRepository.findByStudentIdWithCourse(studentId);
-    //     if(enrollment == null) throw new StudentNotFoundException(studentId);
-    //     return enrollment;
-    // }
-
     @Override
     public Grade calculateGradeForEnrollment(Long enrollmentId) {
         Enrollment existingEnrollment = findEnrollmentById(enrollmentId); // throws ENFE
@@ -127,11 +119,9 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             return null;
         }
 
-        // return (Grade) resp.getBody(); // check if this works properly or not
         return (Grade) Objects.requireNonNull(resp.getBody());
     }
 
-    /* Essentially this code is not much different from the code above */
     @Override
     public Grade getGradeForEnrollment(Long enrollmentId) {
         Enrollment existingEnrollment = findEnrollmentById(enrollmentId); // throws ENFE
@@ -142,18 +132,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             return null;
         }
 
-        // return (Grade) resp.getBody(); // check if this works properly or not
         return (Grade) Objects.requireNonNull(resp.getBody());
     }
-
-    /* 
-       feing client needs eid and marks
-       feign client calls grade-service
-     * grade-service returns a grade object - gid, eid, marks, letter_grade
-     *      this is need a grade object
-     * store the grade object
-     * from the grade object extract the eid and letter_grade
-     * return enrollment with grade
-     */
 
 }

@@ -29,11 +29,6 @@ public class EnrollmentController {
     @Autowired
     private CourseService courseService;
 
-    // logger for debugging
-    // private static final Logger LOGGER = LoggerFactory.getLogger(Enrollment.class.getName()); 
-
-    /* Enrollment constructor here - not needed guess */
-
     @GetMapping("/all")
     public ResponseEntity<?> getAllEnrollments() {
         List<Enrollment> listOfAllEnrollments = enrollmentService.listAllEnrollments();

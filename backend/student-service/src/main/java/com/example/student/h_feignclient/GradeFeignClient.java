@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.student.i_feigndto.FeignEnrollmentDTO;
 import com.example.student.i_feigndto.Grade;
 
-@FeignClient(value = "grade-service", url = "http://localhost:8081") // might need to change this when using docker
+@FeignClient(value = "grade-service", url = "http://localhost:8081") 
 public interface GradeFeignClient {
 
     @PostMapping("/grade/add")

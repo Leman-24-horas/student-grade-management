@@ -13,31 +13,11 @@ public class RequestDTO {
         Long marks;
     }
 
-    // For feign client
-    // @Getter
-    // @Setter
-    // public static class Enrollment {
-    //     private Long enrollmentId;
-    //     private Long marks;
-    // }
-
     @Getter
     @Setter
     public static class Marks {
         private Long marks;
     }
 
-    // @Getter
-    // @Setter
-    // public static class EnrollmentWithGrade {
-    //     private Long enrollmentId;
-    //     private Long marks;
-    //     private String grade;
-    // }
 }
 
-/* also possible
- * public class CreateClanUserDTO {
- *  private Long xxx;
- * }
- */

@@ -41,7 +41,7 @@ public class DataLoader implements CommandLineRunner { // commandLineRunner so t
             System.out.println("Exisiting data - data loading skipped");
             return;
 
-            /* TODO - code that wipes out all previous entries and loads in new data 
+            /* Extra? - code that wipes out all previous entries and loads in new data 
              * Need to add delete all method in service
             */
         }

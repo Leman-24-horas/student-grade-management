@@ -1,4 +1,4 @@
-package com.example.student.test_repository;
+package com.example.student.unit_tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

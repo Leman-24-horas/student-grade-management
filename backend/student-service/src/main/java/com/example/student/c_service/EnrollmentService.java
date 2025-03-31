@@ -9,7 +9,6 @@ public interface EnrollmentService {
     List<Enrollment> listAllEnrollments();
     List<Enrollment> listAllEnrollmentsFromCourse(Long courseId); // uses special query
     Enrollment findEnrollmentById(Long enrollmentId);
-    // Enrollment findEnrollmentByStudentId(Long studentId); //needs special query
     
     Enrollment addEnrollment(Enrollment enrollment);
     Enrollment updateEnrollment(Long enrollmentId, Enrollment newEnrollment);

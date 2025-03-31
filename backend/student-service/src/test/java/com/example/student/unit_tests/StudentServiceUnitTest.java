@@ -1,4 +1,4 @@
-package com.example.student.test_repository;
+package com.example.student.unit_tests;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -87,17 +87,6 @@ public class StudentServiceUnitTest {
 
         // Verify
         verify(studentRepository, times(1)).findAll();
-
-        // Just a little extra
-        // List<Student> list1 = new ArrayList<>();
-        // list1.add(new Student(1L, "Ramu", 76L));
-        // list1.add(new Student(2L, "Lalu", 81L));
-
-        // List<Student> list2 = new ArrayList<>();
-        // list2.add(new Student(1L, "Ramu", 76L));
-        // list2.add(new Student(2L, "Lalu", 81L));
-
-        // assertEquals(list1, list2);
     }
 
     @Test
@@ -156,8 +145,7 @@ public class StudentServiceUnitTest {
     void addStudent_NameNull_ReturnIllegalArgException() {
         // Arrange
         Student illegalStudent = new Student(2L, null);
-        // when(studentRepository.save(illegalStudent)).thenThrow(IllegalArgumentException.class); // this is wrong 
-                                                                                                   // for methods with non-void return type use .thenThrow()
+
         // for methods of void return type
         doThrow(new DataIntegrityViolationException("Name cannot be null")).when(studentRepository).save(illegalStudent);  
 
@@ -238,15 +226,6 @@ public class StudentServiceUnitTest {
         verify(studentRepository, times(1)).findById(1L);
         verify(studentRepository, times(1)).save(mockStudent);
 
-        /* What did I learn from writing this test case?
-         * 1) Test case logic should not be a repetition of previous code logic i.e. updateStudent() logic in studentService
-         *      No need: setMarks() or save() etc
-         * 2) We just need the student hence only findById() is mocked so that there is mocked Student entity in the mocked repository which can be found and upated accordingly
-         *      So see if you can pee, I just need to give you water
-         * 3) In Java, if you create another object = older object it's bascially a ptr pointing to the same thing so if the older object changed then change will be reflected for the ptr too
-         *    That's why we need to create a new instance.
-         * 4) 
-         */
     }
 
     @Test

@@ -81,7 +81,4 @@ public class StudentController {
         }
     }
     
-    /* TODO - change BAD REQUEST to NOT FOUND where student not found
-     * TODO - update in test cases also
-     */
 }
