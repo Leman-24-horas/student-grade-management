@@ -22,13 +22,11 @@
 3. **Enrollment Service:** Manages student-course enrollments, maintaining records of which students are registered for which courses. It also stores marks for each student’s enrollment. 
 4. **Grade Service:** Uses pre-defined grading criteria to compute letter grades from the marks stored in Enrollment entities. 
 
-Diagram 1 below explains how the microservices interact with each other:
-![Image](diagrams/Microservice%20Architecture%20Diagram%20copy.jpg)
-**Diagram 1: Microservices Architecture** 
+**Diagram 1** below explains how the microservices interact with each other:
+![Image](diagrams/Microservice%20Architecture%20Diagram%20copy.jpg) 
 
-Diagram 2 below explains the architecture inside each individual microservice:
+**Diagram 2** below explains the architecture inside each individual microservice:
 ![Image](diagrams/Inside%20a%20Microservice%20Diagram.jpg)
-**Diagram 2: Microservices Architecture** 
 
 
 
