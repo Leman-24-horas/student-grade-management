@@ -1,4 +1,5 @@
 # Student Grade Management System
+created by Aditya Kumar Bhardwaj
 
 ## Overview
 **Student Grade Management System** is a backend application designed to manage and organize student-course information efficiently. It handles student and course details, enrollments, and letter grades for each enrollment. Built with **Java Spring Boot 3** using a **microservices architecture**, this system is scalable, and well-structured for future enhancements.
@@ -40,8 +41,7 @@
 1. **Clone the repository:**
     ```bash
     CHANGE THIS
-    git clone https://github.com/Leman-24-horas/spring-boot-practice-1.git
-    cd spring-boot-practice-1
+    git clone https://github.com/Leman-24-horas/student-grade-management.git
     ```
 
 2. **Set up the database:** Create a MySQL database named            ```student_management``` and set its port to `3306`.
