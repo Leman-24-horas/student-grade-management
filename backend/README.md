@@ -1,7 +1,7 @@
-# Student Grading System
+# Student Grade Management System
 
 ## Overview
-**Student Grading System** is a backend application designed to manage and organize student-course information efficiently. It handles student and course details, enrollments, and letter grades for each enrollment. Built with **Java Spring Boot 3** using a **microservices architecture**, this system is scalable, and well-structured for future enhancements.
+**Student Grade Management System** is a backend application designed to manage and organize student-course information efficiently. It handles student and course details, enrollments, and letter grades for each enrollment. Built with **Java Spring Boot 3** using a **microservices architecture**, this system is scalable, and well-structured for future enhancements.
 
 ## Key Features
 - **Student and Course Management:** Create, update, and delete student and course details.
