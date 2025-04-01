@@ -45,8 +45,8 @@
 
 2. **Set up the database:** Open MySQL and create a new connection. Give it your desired name and ensure that its `port` is set to `3306`. Now in MySQL, create a database named ```student_management``` by running the following command:
     ```bash
-    create schema student-management
-    use student-management
+    create schema student_management;
+    use student_management;
     ```
 
 3. **Configure Application Properties:** Modify the ```application. properties``` file in the following directories: 
