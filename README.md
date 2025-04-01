@@ -52,8 +52,8 @@
 3. **Configure Application Properties:** Modify the ```application. properties``` file in the following directories: 
 
     ```bash
-    backend/grade-service/src/resources/application.properties
-    backend/student-service/src/resources/application.properties
+    backend/grade-service/src/main/resources/application.properties
+    backend/student-service/src/main/resources/application.properties
     ```
     Configure your database connection as follows:
     ```bash
