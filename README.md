@@ -137,9 +137,9 @@ Open your preferred API client (e.g., Postman) and access the following APIs
    Use the following JSON Body for the POST method   
    ```
     {
-	    "studentId": 1,
-        "courseId": 1,
-        "marks": 99
+	    "studentId": anyValidStudentId,
+        "courseId": anyValidCourseId,
+        "marks": marks
     }
    ```    
 
@@ -155,7 +155,7 @@ Open your preferred API client (e.g., Postman) and access the following APIs
 - `DELETE localhost:8080/enrollment/delete/{id}`: Delete a specific enrollment entry
 
 - `POST localhost:8080/enrollment/calculate-grade/{enrollmentId}`: Calculate letter grade for an enrollment entity
-- `GET localhost:8080/enrollment/grade/get/{id}`: Get letter grade for enrollment
+- `GET localhost:8080/enrollment/grade/get/{enrollmentId}`: Get letter grade for enrollment
 
 
 ### **Grade Service**
