@@ -86,7 +86,7 @@
 ## API Endpoints
 Open your preferred API client (e.g., Postman) and access the following APIs
 
-### **User Service**
+### **Student Service**
 - `GET localhost:8080/student/all`: Get all students
 - `GET localhost:8080/student/{id}`: Get a specific student
 
@@ -193,3 +193,8 @@ void getStudent_InvalidId_ReturnNotFound() {
     - `gateway-service`: for better managing inter-service communication and routing requests to the appropriate microservices. 
     - `authentication-service`: to facilitate user verification and authorization
 - Develop a user interface. 
+
+## Demo
+Please find the video for the demo of this SpringBoot Application (here)[https://drive.google.com/file/d/1kIWpmmXKz9ZXOuxJbdEvUKCj-YYDDlIR/view?usp=sharing].
+
+If there are any issues with playing the video on the cloud, please download the video and play it locally on your computer.
