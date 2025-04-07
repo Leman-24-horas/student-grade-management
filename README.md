@@ -200,7 +200,7 @@ Please find the video for the demo of this SpringBoot Application [here](https:/
 If there are any issues with playing the video on the cloud, please download the video and play it locally on your computer.
 
 ## Acknowledegements
-This project is independently developed and is not derived from any specific online course, tutorial, or proprietary material. All concepts and implementations were assembled through original work, guided only by publicly available resources. A list of reference materials used during development is provided below.
+This project is independently developed and is not derived from any specific online course or tutorial. All concepts and implementations were assembled through original work, guided only by publicly available resources. A list of reference materials used during development is provided below.
 
 - Integrating MySQL with SpringBoot: 
     - https://youtu.be/fgVoVt2EGpM
@@ -209,6 +209,9 @@ This project is independently developed and is not derived from any specific onl
     - https://www.baeldung.com/jpa-hibernate-associations
 - Rest Controllers
     - https://stackoverflow.com/questions/33711986/spring-boot-how-to-set-a-common-path-for-multiple-restcontrollers
+- Response Entities
+    - https://www.baeldung.com/spring-response-entity
+    - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html
 - Unit Testing in SpringBoot: 
     - https://medium.com/@AlexanderObregon/mastering-spring-boot-testing-with-junit-and-mockito-8bec9b4911fc
     - https://youtu.be/jqwZthuBmZY
