@@ -198,3 +198,34 @@ void getStudent_InvalidId_ReturnNotFound() {
 Please find the video for the demo of this SpringBoot Application [here](https://drive.google.com/file/d/1kIWpmmXKz9ZXOuxJbdEvUKCj-YYDDlIR/view?usp=sharing).
 
 If there are any issues with playing the video on the cloud, please download the video and play it locally on your computer.
+
+## Acknowledegements
+This project is independently developed and is not derived from any specific online course, tutorial, or proprietary material. All concepts and implementations were assembled through original work, guided only by publicly available resources. A list of reference materials used during development is provided below.
+
+- Integrating MySQL with SpringBoot: 
+    - https://youtu.be/fgVoVt2EGpM
+    - https://spring.io/guides/gs/accessing-data-mysql
+- JPA Associations for linking Student and Course entities with Enrollment entity: 
+    - https://www.baeldung.com/jpa-hibernate-associations
+- Rest Controllers
+    - https://stackoverflow.com/questions/33711986/spring-boot-how-to-set-a-common-path-for-multiple-restcontrollers
+- Unit Testing in SpringBoot: 
+    - https://medium.com/@AlexanderObregon/mastering-spring-boot-testing-with-junit-and-mockito-8bec9b4911fc
+    - https://youtu.be/jqwZthuBmZY
+- Implementing Data Loader in SpringBoot
+    - https://www.geeksforgeeks.org/spring-boot-load-initial-data/?ref=gcse_outind
+- Understanding Feign Client: 
+    - https://www.baeldung.com/spring-boot-feignclient-vs-webclient
+    - https://youtu.be/DACsOJomLI0
+    - https://rameshfadatare.medium.com/how-to-create-and-deploy-spring-boot-microservices-using-docker-fa1757d0805a
+- Creating a Global Exception Handler for grade-service
+    - https://www.geeksforgeeks.org/spring-webflux-rest-api-global-exception-handling/?ref=header_outind
+- Resources used for debugging
+    - https://stackoverflow.com/questions/73288515/jpa-and-deprecated-getone-and-getbyid-how-to-catch-entitynotfoundexceptio
+    - https://stackoverflow.com/questions/75596496/cannot-deserialize-value-of-type-java-lang-long-from-object-value-token-json
+    - https://stackoverflow.com/questions/9186604/mockito-exception-when-requires-an-argument-which-has-to-be-a-method-call-on
+
+<br>
+
+**Note:** A significant portion of the foundational knowledge and self-directed learning for this project was also informed by the materials provided in *CS203: Collaborative Software Development*.
+
