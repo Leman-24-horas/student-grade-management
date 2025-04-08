@@ -49,7 +49,7 @@
     use student_management;
     ```
 
-3. **Configure Application Properties:** Modify the ```application. properties``` file in the following directories: 
+3. **Configure Application Properties:** Modify the ```application.properties``` file in the following directories: 
 
     ```bash
     backend/grade-service/src/main/resources/application.properties
@@ -105,7 +105,7 @@ Open your preferred API client (e.g., Postman) and access the following APIs
 	    "studentName": "New_Student_Name"
     }
 
-- `DELETE localhost:8080/student/delete/{id}`: Delete a specific student entry
+- `DELETE localhost:8080/student/delete/{id}`: Delete a specific student entity
 
 ### **Course Service**
 - `GET localhost:8080/course/all`: Get all courses
@@ -126,14 +126,14 @@ Open your preferred API client (e.g., Postman) and access the following APIs
 	    "courseName": "New_Course_Name"
     }
 
-- `DELETE localhost:8080/course/delete/{id}`: Delete a specific course entry
+- `DELETE localhost:8080/course/delete/{id}`: Delete a specific course entity
 
 ### **Enrollment Service**
 - `GET localhost:8080/enrollment/all`: Get all enrollments
 - `GET localhost:8080/enrollment/{id}`: Get a specific enrollment
 - `GET localhost:8080/enrollment/course/{id}`: Get a specific enrollment by courseId
 
-- `POST localhost:8080/enrollment/add`: Create a enrollment entity \
+- `POST localhost:8080/enrollment/add`: Create an enrollment entity \
    Use the following JSON Body for the POST method   
    ```
     {
@@ -152,7 +152,7 @@ Open your preferred API client (e.g., Postman) and access the following APIs
         "marks": newMarks
     }
 
-- `DELETE localhost:8080/enrollment/delete/{id}`: Delete a specific enrollment entry
+- `DELETE localhost:8080/enrollment/delete/{id}`: Delete a specific enrollment entity
 
 - `POST localhost:8080/enrollment/calculate-grade/{enrollmentId}`: Calculate letter grade for an enrollment entity
 - `GET localhost:8080/enrollment/grade/get/{enrollmentId}`: Get letter grade for enrollment
